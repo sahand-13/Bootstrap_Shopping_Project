@@ -6,14 +6,21 @@ const initial = {
   GetItemsCount: () => {},
   inCreaseCartQuantity: () => {},
   deCreaseCartQuantity: () => {},
-  GetItemsCount: () => {},
   removeItem: () => {},
+  GetAllCount: () => {},
 };
 const ShoppingCartContext = createContext(initial);
 const ShoppingProvider = ({ children }) => {
   const [cart, setCart] = useLocalStorage("ShoppingCart", initial.cart);
   const GetItemsCount = (id) => {
     return cart.find((item) => item.id === id)?.Count || 0;
+  };
+  const GetAllCount = () => {
+    let Counter = 0;
+    cart.forEach((item) => {
+      Counter += item.Count;
+    });
+    return Counter;
   };
   const inCreaseCartQuantity = (id) => {
     debugger;
@@ -30,8 +37,9 @@ const ShoppingProvider = ({ children }) => {
     });
   };
   const deCreaseCartQuantity = (id) => {
+    debugger;
     setCart((currentItems) => {
-      if (currentItems.find((item) => item.id === id)) {
+      if (currentItems.find((item) => item.id === id)?.Count === 1) {
         return currentItems.filter((item) => item.id !== id);
       }
       return currentItems.map((item) => {
@@ -55,6 +63,7 @@ const ShoppingProvider = ({ children }) => {
         inCreaseCartQuantity,
         deCreaseCartQuantity,
         removeItem,
+        GetAllCount,
       }}
     >
       {children}

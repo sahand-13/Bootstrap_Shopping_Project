@@ -3,9 +3,15 @@ import { Navbar as BSNavBar, Container, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import useTheme from "../../hooks/useTheme";
+import useShoppingCart from "../../hooks/useShoppingCart";
+import Flash from "react-reveal/Flash";
+import BagCounter from "./BagCounter";
+
 const Navbar = () => {
   const { theme } = useTheme();
   const [hover, setHover] = useState(false);
+  const { GetAllCount } = useShoppingCart();
+  const Counter = GetAllCount();
   return (
     <BSNavBar
       sticky="top"
@@ -18,7 +24,7 @@ const Navbar = () => {
           <Nav.Link
             className="text-uppercase text-center m-2 d-flex "
             as={NavLink}
-            to="/Home"
+            to="/"
           >
             <Icon
               style={{
@@ -92,7 +98,7 @@ const Navbar = () => {
                   : theme.palette.text.secondary.lighter,
               }}
             >
-              13
+              {Counter > 0 && <BagCounter />}
             </div>
           </div>
         </Nav.Item>

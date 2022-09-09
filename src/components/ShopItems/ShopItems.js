@@ -5,6 +5,7 @@ import useTheme from "../../hooks/useTheme";
 import curruncyFormatter from "../../utils/curruncyFormatter";
 import Jump from "react-reveal/Jump";
 import useShoppingCart from "../../hooks/useShoppingCart";
+import { v4 as uuidv4 } from "uuid";
 
 const ShopItems = ({ product }) => {
   const { theme } = useTheme();
