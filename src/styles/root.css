@@ -1,0 +1,15 @@
+:root{
+    --main-color: #fdfdfd;
+    background-color: var(--main-color);
+   
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(62, 58, 58, 0.464); 
+    border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #363131cf; 
+}

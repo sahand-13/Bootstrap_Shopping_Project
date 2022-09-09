@@ -1,0 +1,25 @@
+{
+    "products":[{
+        "id":1,
+        "name":"book",
+        "discription":"this is test data",
+        "price":1100,
+        "pic":"https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80",
+        "Cout":2
+    },{
+        "id":2,
+        "name":"laptop",
+        "discription":"this is test data",
+        "price":1500,
+        "pic":"https://assets3.razerzone.com/K0OxFmEDEFeLhwlGTtLTcqdqa5A=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fhd7%2Fhc2%2F9189035999262%2FBlade-14-Piper-A-N-1500x1000-01.jpg",
+        "Cout":5
+    },
+    {
+        "id":3,
+        "name":"machine",
+        "discription":"this is test data",
+        "price":2000,
+        "pic":"https://www.autoscout24.be/cms-content-assets/7vcRAQ5x8nPdNXlDY05FBk-3f2d3cc8951972d05d57027dcee21001-AS24-maybach_01-1100.jpg",
+        "Cout":1
+    }]
+}
