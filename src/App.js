@@ -1,16 +1,16 @@
 import React from "react";
 import Router from "./routes";
-import Layout from "./layout";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import "./styles/root.css";
 import { ShoppingProvider } from "./contexts/ShoppingContext";
+import Notistack from "./components/Notistack/Notistack";
 const App = () => {
   return (
     <ThemeProvider>
       <ShoppingProvider>
-        <Layout>
+        <Notistack>
           <Router />
-        </Layout>
+        </Notistack>
       </ShoppingProvider>
     </ThemeProvider>
   );

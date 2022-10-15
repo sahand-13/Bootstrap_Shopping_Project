@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import useTheme from "../../hooks/useTheme";
 import useShoppingCart from "../../hooks/useShoppingCart";
-import Flash from "react-reveal/Flash";
 import BagCounter from "./BagCounter";
+import UserProfile from "./UserProfile";
 
 const Navbar = () => {
   const { theme } = useTheme();
@@ -19,6 +19,7 @@ const Navbar = () => {
       bg={theme.mode}
       variant="dark"
     >
+      <UserProfile />
       <Container>
         <Nav className="me-auto">
           <Nav.Link

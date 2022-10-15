@@ -1,15 +1,31 @@
 import React, { lazy, Suspense } from "react";
 import { useRoutes } from "react-router-dom";
+import AuthGaurd from "../Auth/AuthGaurd.js";
+import Layout from "../layout/index.js";
+import LoginPage from "../pages/Login/index.js";
+import SignupPage from "../pages/Signup/index.js";
 
 const Router = () => {
   return useRoutes([
+    { path: "/Login", element: <LoginPage /> },
+    { path: "/Signup", element: <SignupPage /> },
     {
       path: "/",
-      element: <Home />,
-    },
-    {
-      path: "/Shop",
-      element: <Shop />,
+      element: (
+        <AuthGaurd>
+          <Layout />
+        </AuthGaurd>
+      ),
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/Shop",
+          element: <Shop />,
+        },
+      ],
     },
     {
       path: "*",
