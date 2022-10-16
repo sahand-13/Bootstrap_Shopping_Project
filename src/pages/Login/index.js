@@ -1,19 +1,19 @@
 import React from "react";
-import { Button, Card, Container, Form, Image } from "react-bootstrap";
+import { Button, Card, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import Login from "../../assets/svg/Login.svg";
 import Bounce from "react-reveal/Bounce";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useRef } from "react";
 import { useSnackbar } from "notistack";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { AvailableUsers, User } from "../../Constants/localStorageConstant";
 import Flip from "react-reveal/Flip";
 import Title from "../../components/Helmet/Title";
-
+import useAuth from "../../hooks/useAuth";
 const LoginPage = () => {
   // Form Validation Schema
+  const { user } = useAuth();
   const navigate = useNavigate();
   const schema = yup
     .object()
@@ -61,7 +61,10 @@ const LoginPage = () => {
     if (!fieldState.invalid) {
       const AllUsers = localStorage.getItem(AvailableUsers);
       const user =
-        AllUsers && JSON.parse(AllUsers).find((user) => user.Email === e.Email);
+        AllUsers &&
+        JSON.parse(AllUsers).find(
+          (user) => user.Email.toLowerCase() === e.Email.toLowerCase()
+        );
 
       if (!user) {
         enqueueSnackbar("User is not exist ", {
@@ -89,6 +92,7 @@ const LoginPage = () => {
       }
     }
   };
+  if (user) return <Navigate to="/" />;
   return (
     <Title title={"Login"}>
       <Flip left cascade>

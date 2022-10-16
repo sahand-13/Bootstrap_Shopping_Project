@@ -23,7 +23,6 @@ const ShoppingProvider = ({ children }) => {
     return Counter;
   };
   const inCreaseCartQuantity = (id) => {
-    debugger;
     setCart((currentItems) => {
       if (currentItems.find((item) => item.id === id) == null) {
         return [...currentItems, { id, Count: 1 }];
@@ -37,7 +36,6 @@ const ShoppingProvider = ({ children }) => {
     });
   };
   const deCreaseCartQuantity = (id) => {
-    debugger;
     setCart((currentItems) => {
       if (currentItems.find((item) => item.id === id)?.Count === 1) {
         return currentItems.filter((item) => item.id !== id);

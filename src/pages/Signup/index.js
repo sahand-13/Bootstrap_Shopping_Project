@@ -9,11 +9,13 @@ import { useRef } from "react";
 import { useSnackbar } from "notistack";
 import Roll from "react-reveal/Roll";
 import Flip from "react-reveal/Flip";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Title from "../../components/Helmet/Title";
 import { AvailableUsers } from "../../Constants/localStorageConstant";
 import { useEffect } from "react";
+import useAuth from "../../hooks/useAuth";
 const SignupPage = () => {
+  const { user } = useAuth();
   const navigate = useNavigate();
   const schema = yup
     .object()
@@ -88,6 +90,7 @@ const SignupPage = () => {
       return navigate({ pathname: "/Login" });
     }
   };
+  if (user) return <Navigate to={"/"} />;
   return (
     <Title title={"Sign Up"}>
       <Flip right cascade>

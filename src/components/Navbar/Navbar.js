@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Navbar as BSNavBar, Container, Nav } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import useTheme from "../../hooks/useTheme";
 import useShoppingCart from "../../hooks/useShoppingCart";
@@ -12,10 +12,12 @@ const Navbar = () => {
   const [hover, setHover] = useState(false);
   const { GetAllCount } = useShoppingCart();
   const Counter = GetAllCount();
+  const { pathname } = useLocation();
+
   return (
     <BSNavBar
       sticky="top"
-      className="shadow-lg mb-3 h-25"
+      className="shadow-lg clearfix mb-3 h-25"
       bg={theme.mode}
       variant="dark"
     >
@@ -26,11 +28,13 @@ const Navbar = () => {
             className="text-uppercase text-center m-2 d-flex "
             as={NavLink}
             to="/"
+            style={{}}
           >
             <Icon
               style={{
                 color: theme.palette.primary.main.darker,
                 fontWeight: "bold",
+                cursor: "pointer",
               }}
               width={30}
               hieght={30}
@@ -64,45 +68,50 @@ const Navbar = () => {
             </div>
           </Nav.Link>
         </Nav>
-        <Nav.Item className="text-white">
-          <div
-            style={{
-              width: "2rem",
-              hieght: "2rem",
-              position: "relative",
-            }}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-          >
-            <Icon
-              className="m-1 justify-content-centers justify-content-center"
-              icon={"icon-park-solid:mall-bag"}
-              color={
-                hover
-                  ? theme.palette.primary.main.lighter
-                  : theme.palette.primary.secondary.lighter
-              }
-              width={45}
-              hieght={45}
-            />
+        {pathname.toLowerCase() === "/shop" && (
+          <Nav.Item className="text-white">
             <div
-              className="d-flex  align-items-center justify-content-center"
               style={{
-                width: 5,
-                hieght: 5,
-                position: "absolute",
-                bottom: 0,
-                right: 0,
-                transform: "translate(-50%, -15% )",
-                color: !hover
-                  ? theme.palette.text.secondary.deepest
-                  : theme.palette.text.secondary.lighter,
+                width: "2rem",
+                hieght: "2rem",
+                position: "relative",
+                marginLeft: 10,
+                marginRight: 10,
               }}
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}
             >
-              {Counter > 0 && <BagCounter />}
+              <Icon
+                className="m-1 justify-content-centers justify-content-center"
+                icon={"icon-park-solid:mall-bag"}
+                style={{ transition: "ease-in-out 250ms" }}
+                color={
+                  hover
+                    ? theme.palette.primary.main.lighter
+                    : theme.palette.primary.secondary.lighter
+                }
+                width={45}
+                hieght={45}
+              />
+              <div
+                className="d-flex  align-items-center justify-content-center"
+                style={{
+                  width: 5,
+                  hieght: 5,
+                  position: "absolute",
+                  bottom: 0,
+                  right: 0,
+                  transform: "translate(-50%, -15% )",
+                  color: !hover
+                    ? theme.palette.text.secondary.deepest
+                    : theme.palette.text.secondary.lighter,
+                }}
+              >
+                {Counter > 0 && <BagCounter />}
+              </div>
             </div>
-          </div>
-        </Nav.Item>
+          </Nav.Item>
+        )}
       </Container>
     </BSNavBar>
   );
